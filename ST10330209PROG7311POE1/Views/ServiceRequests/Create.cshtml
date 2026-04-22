@@ -1,0 +1,11 @@
+﻿@model ST10330209PROG7311POE1.Models.ServiceRequest
+@{
+    ViewData["Title"] = "Create Service Request";
+}
+<h2>Create Service Request</h2>
+<form asp-action="Create" method="post">
+    <div class="mb-3"><label>Contract</label><select asp-for="ContractId" asp-items="ViewBag.Contracts" class="form-select"></select></div>
+    <div class="mb-3"><label>Description</label><textarea asp-for="Description" class="form-control"></textarea></div>
+    <div class="mb-3"><label>Cost (USD)</label><input asp-for="CostInUSD" class="form-control" /></div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

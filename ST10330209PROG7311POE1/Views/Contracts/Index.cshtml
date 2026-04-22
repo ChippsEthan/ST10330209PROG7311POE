@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ST10330209PROG7311POE1.Models.Contract>
+@{
+    ViewData["Title"] = "Contracts";
+}
+<h2>Contracts</h2>
+<form method="get" class="row g-3 mb-3">
+    <div class="col-auto"><input type="date" name="startDate" class="form-control" placeholder="Start Date" /></div>
+    <div class="col-auto"><input type="date" name="endDate" class="form-control" placeholder="End Date" /></div>
+    <div class="col-auto"><select name="status" class="form-select"><option value="">All</option><option>Draft</option><option>Active</option><option>Expired</option><option>OnHold</option></select></div>
+    <div class="col-auto"><button type="submit" class="btn btn-primary">Filter</button></div>
+</form>
+<p><a asp-action="Create" class="btn btn-primary">New Contract</a></p>
+<table class="table">
+    <thead><tr><th>Client</th><th>Start Date</th><th>End Date</th><th>Status</th><th>PDF</th></tr></thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Client?.Name</td>
+                <td>@c.StartDate.ToShortDateString()</td>
+                <td>@c.EndDate.ToShortDateString()</td>
+                <td>@c.Status</td>
+                <td>@if(!string.IsNullOrEmpty(c.SignedAgreementPath)){
+                <a href="@c.SignedAgreementPath" target="_blank">View</a>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@c.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@c.Id">Delete</a>
+                    </td>
+            }
+</td>
+        </tr>
+                }
+    </tbody>
+</table>

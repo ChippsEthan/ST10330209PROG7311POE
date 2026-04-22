@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ST10330209PROG7311POE1.Models.ServiceRequest>
+@{
+    ViewData["Title"] = "Service Requests";
+}
+<h2>Service Requests</h2>
+<p><a asp-action="Create" class="btn btn-primary">New Request</a></p>
+<table class="table">
+    <thead><tr><th>Contract</th><th>Description</th><th>Cost (USD)</th><th>Cost (ZAR)</th><th>Status</th></tr></thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Contract?.Client?.Name</td>
+                <td>@r.Description</td>
+                <td>@r.CostInUSD</td>
+                <td>@r.CostInZAR</td>
+                <td>@r.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
